@@ -1,0 +1,48 @@
+<ion-content class="shit" padding-horizontal>
+	<ion-card>
+		<!-- <ion-img src="/assets/icon/favicom.png"></ion-img> -->
+		<ion-card-header>
+			<ion-row>
+				<ion-col size="5"></ion-col>
+				<ion-col size="2">
+					<ion-col class="card-header-icon">
+						<ion-img src="/assets/image/nightowl-logo.png"></ion-img>
+					</ion-col>
+				</ion-col>
+				<ion-col size="5"></ion-col>
+			</ion-row>					
+			<ion-card-title text-center>Login to App</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>			
+			<ion-row>				
+				<ion-col size="12">					
+						<ion-title class="message" color="danger" text-center>{{message}}</ion-title>					
+					<ion-list>
+						<form [formGroup]="modalForm" (ngSubmit)="login()">
+							<ion-item>
+								<ion-label class="login-label" position="floating">Username</ion-label>
+								<ion-input type="text" formControlName="username"></ion-input>
+							</ion-item>
+
+							<ion-item>
+								<ion-label class="login-label" position="floating">Password</ion-label>
+								<ion-input type="password" formControlName="password" ></ion-input>
+							</ion-item>	
+						</form>					
+					</ion-list>
+					<ion-col padding>
+						<ion-button expand="full" color="primary" shape="round" (click)="login()" >Login</ion-button>
+					</ion-col><br>
+					<ion-row>
+						<ion-col size="4"></ion-col>
+						Don't have account
+						<ion-text color="secondary">
+						  <h5>&emsp;Register</h5>
+						</ion-text>
+					</ion-row><br><br>
+				</ion-col>				
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+

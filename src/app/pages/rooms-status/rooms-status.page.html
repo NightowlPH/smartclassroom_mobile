@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="secondary">
+			    <ion-button (click)="moreOptions($event)">
+			      <ion-icon slot="icon-only" name="more"></ion-icon>
+			    </ion-button>
+			  </ion-buttons>
+		<ion-title>Rooms Status</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="rooms-status" padding>	
+	<ion-searchbar [(ngModel)]="room_filter.room_name" padding-horizontal></ion-searchbar>
+	<ion-row no-padding>
+		<ion-col *ngFor = "let room of rooms_status | filterBy: room_filter" size="4" no-padding>
+			<ion-card (click)="room_control(room.room_id)">
+				<ion-card-header>						
+					<ion-title class="rs-card-header-title" no-padding-b0otton>{{room.room_name}}</ion-title>						
+				</ion-card-header>
+				<ion-card-content class="card-content">
+					<ion-row *ngFor = "let device of room.devices" >
+						<ion-col size="9" no-padding>
+							<ng-container *ngIf = "device.device_name == 'Lights'">
+								<ion-icon src="assets/icon/light-bulb.svg"></ion-icon>
+							</ng-container>
+							<ng-container *ngIf = "device.device_name == 'Aircon'">
+								<ion-icon src="assets/icon/air-conditioner.svg"></ion-icon>
+							</ng-container>
+							<ng-container *ngIf = "device.device_name == 'Temp.'">
+								<ion-icon name="ios-thermometer"></ion-icon>
+							</ng-container>								
+							<ion-text> {{device.device_name}}:</ion-text>
+						</ion-col>
+						<ion-col size="3" no-padding>
+							<ion-text>{{device.device_status}}</ion-text>
+						</ion-col>
+					</ion-row>																
+				</ion-card-content>
+			</ion-card>
+		</ion-col>			
+	</ion-row>		
+</ion-content>

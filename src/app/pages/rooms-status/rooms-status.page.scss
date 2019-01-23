@@ -1,0 +1,32 @@
+ion-card {
+    background-color: white;   
+}
+
+.rs-card-header-title{
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: capitalize;
+	color: black;
+}
+
+ion-icon {
+  &[class*="custom-"] {
+    mask-size: contain;
+    mask-position: 50% 50%;
+    mask-repeat: no-repeat;
+    background: currentColor;
+    width: 1em;
+    height: 1em;
+  }
+
+  &[class*="air-conditioner"] {
+    mask-image: url(/assets/icon/air-conditioner.svg);
+  }
+  &[class*="light"] {
+    mask-image: url(/assets/icon/light-bulb.svg);
+  }
+  
+}
+.card-content{
+	height: 77px;
+}

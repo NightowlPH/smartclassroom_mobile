@@ -1,0 +1,67 @@
+
+<ion-header translucent>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button (click)="navigateback()">
+				<ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title class="card-title" text-center>Room Control</ion-title> 
+		<ion-buttons slot="secondary">
+			<ion-button (click)="moreOptions($event)">
+				<ion-icon slot="icon-only" name="more"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="room-control" padding>
+	<br>
+	<ion-text class="room-name">{{room_status.room_name}}</ion-text><br><br>
+	<ion-text class="todays-date">{{room_status.date}}</ion-text><br><br>
+
+	<ion-row *ngFor = "let device of room_status.devices">
+		<ng-container *ngIf = "device.device_name == 'Aircon temperature'">
+			<ion-col size="9">			
+				<ion-text class="room-temperature">{{aircon_temperature}}°C</ion-text><br>
+				<ion-text class="todays-date">Aircon Temperature</ion-text>
+			</ion-col>
+			<ion-col size="2">
+				<ion-col class="room-temperature-icon">
+					<ion-img src="assets/image/room-temperature.png"></ion-img>
+				</ion-col>
+			</ion-col>				
+			<ion-range [(ngModel)]="aircon_temperature" (ionBlur)="changeTemperature(device.room_status_id)" class="range-slider" mode="ios" max="24" min="16"  pin="true" padding ></ion-range><br>	
+		</ng-container>
+		
+		<ng-container *ngIf = "device.device_name == 'Lights'">
+			<ion-col size="9" padding-horizontal>
+				<ion-icon src="assets/icon/light-bulb.svg"></ion-icon>
+				<ion-text> Lights:</ion-text>
+			</ion-col>
+			<ion-col size="3" no-padding>
+				<ion-toggle (ionChange)="controlLights($event,device.room_status_id)" checked="{{device.device_status}}" color="primary"></ion-toggle>
+			</ion-col>
+		</ng-container>
+		<ng-container *ngIf = "device.device_name == 'Aircon'">
+			<ion-col size="9" padding-horizontal>
+				<ion-icon src="assets/icon/air-conditioner.svg"></ion-icon>
+				<ion-text> Aircon:</ion-text>
+			</ion-col>
+			<ion-col size="3" no-padding>
+				<ion-toggle (ionChange)="controlAircon($event,device.room_status_id)" checked="{{device.device_status}}" color="primary"></ion-toggle>
+			</ion-col>
+		</ng-container>
+		<ng-container *ngIf = "device.device_name == 'Door'">		
+			<ion-col size="9" padding-horizontal>
+				<ion-icon name="md-today"></ion-icon>
+				<ion-text> Door:</ion-text>
+			</ion-col>
+			<ion-col size="3" no-padding>
+				<ion-toggle (ionChange)="controlDoor($event,device.room_status_id)" checked="{{device.device_status}}" color="primary"></ion-toggle>
+			</ion-col>
+		</ng-container>
+
+	</ion-row>		
+
+</ion-content>
