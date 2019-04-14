@@ -11,13 +11,12 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 ion-content {
-    --background: linear-gradient(162deg, #da5454 20%, rgba(39, 52, 86, 0.8) 100%), bottom no-repeat
+	--background: #2f4050;
 }
 
 ion-content.room-control{
-    --background: linear-gradient(162deg, #0cd1e8 20%, rgba(3, 9, 27, 0.8) 100%), bottom no-repeat
+    --background: #b1d5f9;
 }
 ion-content.rooms-status{
-	--background: linear-gradient(162deg, rgba(50, 165, 74, 0.8) 20%, rgba(3, 9, 27, 0.8) 100%), bottom no-repeat;
 }
 

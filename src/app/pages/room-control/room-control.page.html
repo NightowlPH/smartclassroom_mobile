@@ -31,7 +31,7 @@
 					<ion-img src="assets/image/room-temperature.png"></ion-img>
 				</ion-col>
 			</ion-col>				
-			<ion-range [(ngModel)]="aircon_temperature" (ionBlur)="changeTemperature(device.room_status_id)" class="range-slider" mode="ios" max="24" min="16"  pin="true" padding ></ion-range><br>	
+			<ion-range [(ngModel)]="aircon_temperature" (ionChange)="changeTemperature(device.room_status_id)" class="range-slider" mode="ios" max="24" min="16"  pin="true" padding ></ion-range><br>	
 		</ng-container>
 		
 		<ng-container *ngIf = "device.device_name == 'Lights'">

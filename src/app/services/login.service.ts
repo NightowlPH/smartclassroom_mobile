@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
 import { environment } from 'src/environments/environment';
-import { catchError, tap, map } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-	private baseUrl = environment.backend_uri;
+  private baseUrl = environment.backend_uri;
 
-    constructor(private http: HttpClient,) { }
+  constructor(private http: HTTP,) { }
 
-
-    login(data: Object)
-	{		
-        return this.http.post(`${this.baseUrl}/login`, data)        
+  login(data: Object) {		
+    let url = `${this.baseUrl}/login`;
+    this.http.setDataSerializer('json');
+    return this.http.post(url, data, {}).then((data) => {return JSON.parse(data.data)});
 	}
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
 import { environment } from 'src/environments/environment';
 import { NavParams, PopoverController } from '@ionic/angular';
+import { from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-popover-logout',
@@ -15,7 +17,7 @@ export class PopoverLogoutPage implements OnInit {
 	private baseUrl = environment.backend_uri;
 	private token: string
 
-  constructor(private http: HttpClient, private storage:Storage, private router:Router, private popoverController: PopoverController) { }
+  constructor(private http: HTTP, private storage:Storage, private router:Router, private popoverController: PopoverController) { }
 
   ngOnInit() {
   }
@@ -28,10 +30,9 @@ export class PopoverLogoutPage implements OnInit {
 		{
 			this.token = token
 			this.storage.remove('auth-token')
-			this.http.post(`${this.baseUrl}/logout`,{},
-	        {
-	        	headers: new HttpHeaders().set('x-access-token',this.token)
-	        }).subscribe( data => {
+      from(this.http.post(`${this.baseUrl}/logout`,{}, {'x-access-token': this.token}))
+        .pipe(map(data => JSON.parse(data.data)))
+        .subscribe( data => {
 	        	this.handleError(data)
 	        	this.router.navigate(['/login'])
 	        	this.popoverController.dismiss();     	

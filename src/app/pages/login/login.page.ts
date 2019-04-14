@@ -13,9 +13,9 @@ import { LoginService  } from 'src/app/services/login.service';
 export class LoginPage implements OnInit {
 
   modalForm: FormGroup
-  message: string; 
+  message: string;
 
-  constructor( private storage:Storage, private loginService:LoginService, private formBuilder: FormBuilder, private router: Router) 
+  constructor( private storage:Storage, private loginService:LoginService, private formBuilder: FormBuilder, private router: Router)
   	{
    		this.createForm() 	   	
 	}
@@ -23,10 +23,10 @@ export class LoginPage implements OnInit {
   createForm()
 	{		
 		this.modalForm = this.formBuilder.group
-		({		 
+		({		
 		    username: ['', Validators.required],
 		    password: ['', Validators.required]
-		})    
+		})
 	}
 
   ngOnInit() {  	  	
@@ -37,32 +37,34 @@ export class LoginPage implements OnInit {
   		{
   			this.router.navigate(['/rooms-status']);
   		}
-  	})  
+  	})
   }
 
   login()
   {  	
   	this.loginService.login(this.modalForm.value)
-  	.subscribe( data =>
-  	{  		
-  		console.log(data)
-  		if(data['userType'] == "Admin"|| data['userType'] == "User")
-  		{  			
-  			console.log("pass")
-  			this.message=""
-  			this.storage.set('auth-token',data['token'])  			
-  			this.router.navigate(['/rooms-status']);  			
-  		}
-  		else{
-  			this.message = "Invalid username or password"
-  		}
-  	},(error) => {   		
+      .then( data =>
+      {  		
+        console.log(data)
+        if(data['userType'] == "Admin"|| data['userType'] == "User")
+        {  			
+          console.log("pass")
+          this.message=""
+          this.storage.set('auth-token',data['token'])  			
+          this.router.navigate(['/rooms-status']);  			
+        }
+        else{
+          this.message = "Invalid username or password"
+        }
+      })
+      .catch(error => {
+        console.log("An error occured: ", error)
         if(error['status'] == 401)
         {
         	this.storage.remove('auth-token')
         	this.message = "Invalid username or password"
-        }        
-     })
+        }
+     });
   }
 
 }

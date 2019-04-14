@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend_uri: 'http://localhost:5000'
+  backend_uri: 'http://smart-classroom-acc.nightowl.lan/api'
 };
 
 /*

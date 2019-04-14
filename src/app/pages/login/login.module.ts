@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -21,11 +21,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
   declarations: [LoginPage],
-  providers: [LoginService]
+  providers: [HTTP, LoginService]
 })
 export class LoginPageModule {}
