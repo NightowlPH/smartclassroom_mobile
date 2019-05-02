@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.foundationu.smart-classroom" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="com.foundationu.smart_classroom" id="com.foundationu.smart-classroom" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Smart Classroom</name>
     <description>App to control the smart devices in the buildings of Foundation University.</description>
     <author email="dolfandringa@gmail.com" href="http://smart-classroom.foundationu.com/">Foundation University - Nightowl Team</author>
